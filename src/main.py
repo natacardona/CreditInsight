@@ -2,6 +2,7 @@ from data.make_datasets import clean_data, load_data
 from features.features import create_features
 from models.model import train_predict
 from visualization.explore_data import plot_data
+from visualization.visualize import display_basic_information
 
 def main():
     # Load data
@@ -13,7 +14,12 @@ def main():
     #change columns upper to lower case
     arrears_adj.columns = [col.lower() for col in arrears_adj.columns]
 
+    display_basic_information(arrears_adj,eeff,hist_loans)
+    
     df = create_features(arrears_adj)
+    
+
+    
     """  
     # Explore data
     plot_data(df)
