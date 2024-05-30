@@ -61,13 +61,24 @@ def merge_dataframes():
 
     # Merge the previously merged data with eeff
     final_merged_df = pd.merge(merged_loans_arrears, eeff, on='CLIENT_ID', how='inner')
+    final_merged_df = final_merged_df[['CLIENT_ID', 'ARREARS_DAYS', 'LOAN_CODE','ARREARS_DATE','ACTIVATION_DATE']]
     
     return final_merged_df
+
 def yearly_count_dataframe(df):
     # Extract the year from ARREARS_DATE
     df['YEAR'] = df['ARREARS_DATE'].dt.year
     yearly_counts_df = df.groupby('YEAR').size().reset_index(name='Count of Arrears')  # This creates a DataFrame with 'year' and 'Count of Arrears'
 
+
     # Create a new DataFrame by counting occurrences per year
     yearly_counts_df = df.groupby('YEAR').size().reset_index(name='COUNT')
     return yearly_counts_df
+
+def get_trainnig_model_dataframe(df):  
+    df['default'] = (df['ARREARS_DAYS'] > 30).astype(int)
+
+    # You may want to create rolling features that capture the past behavior of payments
+    df['rolling_arrears_mean'] = df.groupby('CLIENT_ID')['ARREARS_DAYS'].transform(lambda x: x.rolling(window=6, min_periods=1).mean())
+    df = df[['CLIENT_ID', 'ARREARS_DAYS', 'LOAN_CODE','ARREARS_DATE','ACTIVATION_DATE','rolling_arrears_mean','default']]
+    return df

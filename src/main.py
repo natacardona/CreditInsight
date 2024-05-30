@@ -1,4 +1,4 @@
-from data.make_datasets import merge_dataframes,yearly_count_dataframe
+from data.make_datasets import get_trainnig_model_dataframe, merge_dataframes,yearly_count_dataframe
 from features.features import create_features
 from visualization.visualize import arrears_count_per_year, display_basic_information, display_data_visualization, display_statistical_summaries,log_data, plot_correlation
 def main():
@@ -23,8 +23,9 @@ def main():
     
     arrears_count_per_year(yearly_count_dataframe(final_merged_df))
     
+    traing_modeldf = get_trainnig_model_dataframe(final_merged_df)
+
 
         
-    
 if __name__ == "__main__":
     main() 
