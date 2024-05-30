@@ -3,15 +3,19 @@ import pandas as pd
 
 
 def create_features(df):
-    """
-    Creates tendencies dataframe based on arrears of clients(6 months)
+    # Ensure the data is sorted by date if necessary
+    df.sort_values(by=['CLIENT_ID', 'ARREARS_DATE'], inplace=True)
 
-    Parameters:
-    df (pd.DataFrame): Data frame containing the original data.
+    # Set the index to the date for rolling calculation
+    df.set_index('ARREARS_DATE', inplace=True)
 
-    Returns:
-    pd.DataFrame: Data frame with new column added max_arrears_6m with tendency calculations on it.
-    """
-    # Getting Max arrears days over the last 6 months and we're creating and new row into the dataframe
-    df['max_arrears_6m'] = df['arrears_days'].rolling(window=180).max()
+    # Group by 'CLIENT_ID' and apply a rolling window of 6 months to calculate the max arrears days
+    df['max_arrears_6m'] = df.groupby('CLIENT_ID')['ARREARS_DAYS'].rolling('180D').max().reset_index(level=0, drop=True)
+    
+    # Reset index after operations
+    df.reset_index(inplace=True)
+   
+    # Select only the columns you want to keep
+    df = df[['CLIENT_ID', 'ARREARS_DAYS', 'max_arrears_6m','ARREARS_DATE']]
+    
     return df
