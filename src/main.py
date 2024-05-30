@@ -12,4 +12,4 @@ def main():
     display_data_visualization(final_merged_df)
         
 if __name__ == "__main__":
-    main()
+    main() 
