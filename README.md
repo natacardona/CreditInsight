@@ -136,13 +136,14 @@ Finalmente, se analizó cuáles factores (como la cantidad de días de atraso) i
 [    0  1510]]
 ```
 
-- Esta matriz muestra el número de predicciones correctas e incorrectas. En tu modelo, 88186 predicciones correctas de no incumplimiento, 37 incorrectas, y 1510 predicciones correctas de incumplimiento.
+- Esta matriz muestra el número de predicciones correctas e incorrectas. En el modelo, 88186 predicciones correctas de no incumplimiento, 37 incorrectas, y 1510 predicciones correctas de incumplimiento.
 
 ### Reporte de Clasificación:
 
 - Precision: ¿Cuánto de lo que el modelo predijo como incumplimiento era realmente incumplimiento?
 - Recall: ¿Cuánto de los verdaderos incumplimientos fue identificado por el modelo?
 - F1-score: Media armónica entre Precision y Recall, útil cuando las clases están desbalanceadas.
+  
 ```
               precision    recall  f1-score   support
            0       1.00      1.00      1.00     88223
