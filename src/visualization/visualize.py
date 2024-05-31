@@ -90,7 +90,7 @@ def plot_arrears_time_series(df):
 
     # Now you can safely resample and plot
     df['ARREARS_DAYS'].resample('M').sum().plot(figsize=(10, 6), linewidth=2, color='#4D4CFC')
-    plt.title('Time Series of Total Arrears Days Per Month')
+    plt.title('Time Series of Total Arrears Days Per Year')
     plt.xlabel('Date')
     plt.ylabel('Total Arrears Days')
     plt.grid(True)
