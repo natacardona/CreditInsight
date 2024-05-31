@@ -1,4 +1,3 @@
-import pandas as pd
 from sklearn.discriminant_analysis import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
