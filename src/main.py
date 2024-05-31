@@ -1,5 +1,6 @@
 from data.make_datasets import get_trainnig_model_dataframe, merge_dataframes,yearly_count_dataframe
 from features.features import create_features
+from models.train_model import train_model
 from visualization.visualize import arrears_count_per_year, display_basic_information, display_data_visualization, display_statistical_summaries,log_data, plot_correlation
 def main():
 
@@ -25,7 +26,7 @@ def main():
     
     traing_modeldf = get_trainnig_model_dataframe(final_merged_df)
 
-
+    train_model(traing_modeldf)
         
 if __name__ == "__main__":
     main() 
