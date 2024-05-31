@@ -1,4 +1,5 @@
-# Project overview and instructions
+# Instrucciones para el proyecto
+
 ### Configuración del entorno
 
 Este proyecto requiere Python 3.x y varias bibliotecas de terceros que interactúan con bases de datos y manejan la manipulación de datos. A continuación, se ofrecen las instrucciones para configurar tu entorno e instalar las dependencias necesarias.
