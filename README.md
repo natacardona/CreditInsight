@@ -99,3 +99,64 @@ Año 2021: El año 2021 muestra un aumento constante en la activación de prést
 - <b>Estrategias Promocionales</b>: Considerar la implementación de estrategias promocionales o ajustes en las condiciones de préstamo durante los trimestres más bajos para estimular la demanda.
 - <b>Revisión de Condiciones del Mercado</b>: Analizar las condiciones del mercado externo que podrían estar influyendo en estos patrones, como cambios económicos, tasas de interés, o competencia
 
+## Descripción del modelo de aprendizaje usado:
+
+### Preparación de Datos:
+
+Antes de empezar con el modelo, fue necesario organizar y preparar los datos recopilados. Esto incluyó la selección de la información relevante, como las fechas de activación de los préstamos y los días de atraso en los pagos, y realizar algunos cálculos preliminares para entender cuánto tiempo ha pasado desde que se activó cada préstamo hasta la fecha de atraso reportada.
+
+#### División de Datos:
+Los datos se dividieron en dos grupos: uno para entrenar (aprender) el modelo y otro para probar (verificar) su precisión. Esto es similar a estudiar para un examen con ciertos temas y luego tomar el examen para ver cuánto has aprendido.
+
+#### Normalización de Datos:
+Para que el modelo funcione correctamente y de manera justa, fue necesario asegurar que todos los datos estuvieran en la misma escala. Por ejemplo, si en un dato se cuentan días y en otro se cuentan dólares, estos deben convertirse a una escala común para evitar sesgos.
+
+#### Entrenamiento del Modelo:
+Con los datos preparados y normalizados, se procedió a entrenar el modelo. Esto implicó usar un método estadístico para aprender de los datos de entrenamiento, específicamente buscando patrones que ayuden a prever si un cliente podría dejar de pagar en el futuro.
+Evaluación del Modelo:
+
+Una vez entrenado el modelo, se evaluó su eficacia utilizando los datos de prueba. Se emplearon varias técnicas estadísticas para medir qué tan bien el modelo podía predecir los resultados comparándolos con lo que realmente ocurrió.
+
+#### Análisis de Resultados:
+
+Finalmente, se analizó cuáles factores (como la cantidad de días de atraso) influyen más en la probabilidad de que un cliente deje de pagar, lo cual es crucial para tomar decisiones informadas y mejorar las estrategias de crédito.
+
+## Acerca de los resultados otorgados por el modelo de machine learning
+
+### Evaluación del Modelo
+
+``` AUC Score: 0.9999976504452557``` 
+
+- El AUC (Área Bajo la Curva ROC) es una medida de la capacidad del modelo para distinguir entre las clases (clientes que cumplen y no cumplen). Un valor cercano a 1 indica una excelente capacidad discriminatoria.
+
+### Matriz de confusión
+
+```
+[[88186    37]
+[    0  1510]]
+```
+
+- Esta matriz muestra el número de predicciones correctas e incorrectas. En tu modelo, 88186 predicciones correctas de no incumplimiento, 37 incorrectas, y 1510 predicciones correctas de incumplimiento.
+
+### Reporte de Clasificación:
+
+- Precision: ¿Cuánto de lo que el modelo predijo como incumplimiento era realmente incumplimiento?
+- Recall: ¿Cuánto de los verdaderos incumplimientos fue identificado por el modelo?
+- F1-score: Media armónica entre Precision y Recall, útil cuando las clases están desbalanceadas.
+```
+              precision    recall  f1-score   support
+           0       1.00      1.00      1.00     88223
+           1       0.98      1.00      0.99      1510
+```
+### Importancia de las Características:
+
+Muestra qué tan influyentes son las variables para las predicciones del modelo.
+
+```
+                 Feature  Coefficient
+0           ARREARS_DAYS     9.794924
+1   rolling_arrears_mean    -0.455387
+2  days_since_activation    -0.536323
+```
+
+Este análisis detallado ofrece una visión clara de cómo el modelo está funcionando y qué factores son los más determinantes para prever los incumplimientos, facilitando la toma de decisiones estratégicas y ajustes en políticas de crédito.
