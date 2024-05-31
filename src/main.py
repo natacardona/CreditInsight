@@ -1,32 +1,21 @@
-from data.make_datasets import get_trainnig_model_dataframe, merge_dataframes,yearly_count_dataframe
-from features.features import create_features
+from data.make_datasets import get_trainnig_model_dataframe, merge_dataframes
 from models.train_model import train_model
-from visualization.visualize import arrears_count_per_year, display_basic_information, display_data_visualization, display_statistical_summaries,log_data, plot_correlation
+from visualization.visualize import plot_arrears_by_client, plot_arrears_days_distribution, plot_arrears_time_series, plot_loan_activity_heatmap
 def main():
 
     final_merged_df = merge_dataframes()
     
-    plot_correlation(final_merged_df)
-
-    display_basic_information(final_merged_df)
+    plot_arrears_days_distribution(final_merged_df)
     
-    display_statistical_summaries(final_merged_df)
+    plot_loan_activity_heatmap(final_merged_df)
     
-    #display_data_visualization(final_merged_df)
-
-    df = create_features(final_merged_df)
+    plot_arrears_by_client(final_merged_df)
     
-    display_statistical_summaries(df)
-    
-    log_data(df)
-    
-    display_data_visualization(final_merged_df)      
-    
-    arrears_count_per_year(yearly_count_dataframe(final_merged_df))
+    plot_arrears_time_series(merge_dataframes())
     
     traing_modeldf = get_trainnig_model_dataframe(final_merged_df)
 
     train_model(traing_modeldf)
-        
+            
 if __name__ == "__main__":
     main() 
